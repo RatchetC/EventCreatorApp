@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+  <title></title>
+
+  <link rel="manifest" href="manifest.json">
+  <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+
+  <script src="lib/ionic/js/ionic.bundle.js"></script>
+  <script src="cordova.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Restlet SDK -->
+  <script src="lib/restlet/module.js"></script>
+
+  <!-- Events -->
+  <script src="js/events/events.module.js"></script>
+  <script src="js/events/events.config.js"></script>
+  <script src="js/events/events.service.js"></script>
+  <script src="js/events/controllers/events.list.js"></script>
+  <script src="js/events/controllers/events.edit.js"></script>
+  <script src="js/events/controllers/events.add.js"></script>
+
+  <!-- Activities -->
+  <script src="js/activities/activities.module.js"></script>
+  <script src="js/activities/activities.config.js"></script>
+  <script src="js/activities/activities.service.js"></script>
+  <script src="js/activities/controllers/activities.list.js"></script>
+  <script src="js/activities/controllers/activities.add.js"></script>
+
+  <!-- Event Activity Mappings -->
+  <script src="js/event_activity_mappings/event_activity_mappings.module.js"></script>
+  <script src="js/event_activity_mappings/event_activity_mappings.service.js"></script>
+</head>
+
+<body ng-app="EventCreatorApp">
+  <ion-pane>
+    <ion-nav-bar class="bar-stable" align-title="center">
+      <ion-nav-back-button></ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-nav-view animation="slide-left-right">
+    </ion-nav-view>
+  </ion-pane>
+</body>
+
+</html>

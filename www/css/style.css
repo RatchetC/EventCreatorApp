@@ -1,0 +1,12 @@
+/* Empty. Add your own CSS if you like */
+.spinner svg {
+  width: 50vw;
+  height: 50vh;
+  z-index: 10000;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  stroke: #63dbffc0;
+
+}

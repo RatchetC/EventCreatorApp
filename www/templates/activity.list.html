@@ -1,0 +1,19 @@
+<ion-view view-title="Activity List">
+  
+  <ion-nav-buttons side="right">
+    <button ui-sref="activity-add" class="button button-clear button-positive icon ion-ios-plus-empty"></button>
+  </ion-nav-buttons>
+  
+  <ion-spinner ng-show="vm.loading" icon="lines" class="spinner"></ion-spinner>
+  
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-remove-animate" ng-repeat="activity in vm.activities" ng-click="vm.addActivityToEvent(activity)">
+        <h2>{{activity.name}}</h2>
+        <p>{{activity.description}}</p>
+        <p>{{activity.units}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
+</ion-view>

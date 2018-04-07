@@ -1,0 +1,50 @@
+<ion-view title="Add Activity">
+  
+  <ion-spinner ng-show="vm.loading" icon="lines" class="spinner"></ion-spinner>
+  
+  <ion-content>
+    
+    <form name="activityForm" class="list">
+      
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Name
+          <span style="color: red; position: absolute; right: 2%" ng-show="activityForm.activityName.$touched && activityForm.activityName.$invalid">Required</span>
+        </span>
+        <input name="activityName" type="text" placeholder="Name" ng-model="vm.activity.name" ng-minlength="2" required>
+      </label>
+      
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Description
+          <span style="color: red; position: absolute; right: 2%" ng-show="activityForm.activityDescription.$touched && activityForm.activityDescription.$invalid">Required</span>
+        </span>
+        <input name="activityDescription" type="text" placeholder="Description" ng-model="vm.activity.description" required> <!-- Does this one need minLength? -->
+      </label>
+      
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Units
+          <span style="color: red; position: absolute; right: 2%" ng-show="activityForm.activityUnits.$touched && activityForm.activityUnits.$invalid">Required</span>
+        </span>
+        <input name="activityUnits" type="text" placeholder="Units" ng-model="vm.activity.units" required>
+      </label>
+      
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Minimum Legal Value
+          <span style="color: red; position: absolute; right: 2%" ng-show="activityForm.activityMinLegalValue.$touched && activityForm.activityMinLegalValue.$invalid">Required</span>
+        </span>
+        <input name="activityMinLegalValue" type="number" placeholder="Minimum Legal Value" ng-model="vm.activity.minLegalValue" required>
+      </label>
+      
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Maximum Legal Value
+          <span style="color: red; position: absolute; right: 2%" ng-show="activityForm.activityMaxLegalValue.$touched && activityForm.activityMaxLegalValue.$invalid">Required</span>
+        </span>
+        <input name="activityMaxLegalValue" type="number" placeholder="Maximum Legal Value" ng-model="vm.activity.maxLegalValue" required>
+      </label>
+      
+      <button style="width: 50vw; left: 50%; transform: translateX(-50%);" class="button button-block button-positive" ng-click="vm.save()" ng-disabled="activityForm.$invalid">Save</button>
+    
+    </form>
+  
+  </ion-content>
+
+</ion-view>

@@ -1,0 +1,22 @@
+<ion-view view-title="Event Creator App">
+  
+  <ion-nav-buttons side="right">
+    <button ui-sref="event-add" class="button button-clear button-positive icon ion-ios-plus-empty"></button>
+  </ion-nav-buttons>
+  
+  <ion-spinner ng-show="vm.loading" icon="lines" class="spinner"></ion-spinner>
+  
+  <ion-content>
+    <ion-list>
+      <ion-item class="item item-remove-animate item-icon-right" ng-repeat="event in vm.events">
+        <h2>{{event.name}}</h2>
+        <p>Date : {{event.date}}</p>
+        <p>Postcode : {{event.postcode}}</p>
+        <i class="icon ion-ios-arrow-back"></i>
+        <ion-option-button class="button button-assertive icon-left ion-trash-b" ng-click="vm.deleteEvent(event.id)">Delete</ion-option-button>
+        <ion-option-button class="button button-energized icon-left ion-edit" ng-click="vm.editEvent(event.id)">Edit</ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+</ion-view>
