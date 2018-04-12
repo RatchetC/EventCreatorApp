@@ -83,12 +83,12 @@
           service.removeEvent(eventID);
           var cleanupPromiseArray = [];
           // delete mappings between events and activities.?
-          // delete activities in question?
+          // delete activities that were mapped to this event
           cleanupPromiseArray.push(eventActivityMappingsSrvc.deleteActivitiesForThisEvent(eventID));
           // delete mappings between events and subjects?
-          // delete subjects in question?
+          // delete subjects that were mapped to this event
           cleanupPromiseArray.push(service.deleteSubjectsForThisEvent(eventID));
-          // delete observations in question?
+          // delete observations for this event
           cleanupPromiseArray.push(service.deleteObservationsForThisEvent(eventID));
         },
         function failure(error) {

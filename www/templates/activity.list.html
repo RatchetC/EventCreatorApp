@@ -7,7 +7,7 @@
   <ion-spinner ng-show="vm.loading" icon="lines" class="spinner"></ion-spinner>
   
   <ion-content>
-    <ion-list>
+    <ion-list type="list-inset">
       <ion-item class="item-remove-animate" ng-repeat="activity in vm.activities" ng-click="vm.addActivityToEvent(activity)">
         <h2>{{activity.name}}</h2>
         <p>{{activity.description}}</p>

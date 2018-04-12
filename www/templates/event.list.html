@@ -7,7 +7,7 @@
   <ion-spinner ng-show="vm.loading" icon="lines" class="spinner"></ion-spinner>
   
   <ion-content>
-    <ion-list>
+    <ion-list type="list-inset">
       <ion-item class="item item-remove-animate item-icon-right" ng-repeat="event in vm.events">
         <h2>{{event.name}}</h2>
         <p>Date : {{event.date}}</p>
