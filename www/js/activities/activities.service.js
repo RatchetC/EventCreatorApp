@@ -57,20 +57,6 @@
       return promiseObj.promise;
     };
 
-    service.deleteActivity = function deleteActivity(activityID) {
-      var promiseObj = $q.defer();
-      var config = {};
-      activityevents.deleteActivitiesActivityid(activityID, config).then(
-        function success(response) {
-          promiseObj.resolve(response);
-        },
-        function failure(error) {
-          promiseObj.reject(error);
-        }
-      );
-      return promiseObj.promise;
-    };
-
     service.addActivity = function addActivity(activity) {
       service.activities.push(activity);
     };
