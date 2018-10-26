@@ -9,13 +9,13 @@
         <span class="input-label">Name
           <span style="color: red; position: absolute; right: 2%;" ng-show="eventForm.eventName.$touched && eventForm.eventName.$invalid">Required</span>
         </span>
-        <input name="eventName" type="text" placeholder="Name" ng-model="vm.event.name" ng-minlength="2" required>
+        <input name="eventName" type="text" placeholder="Name" ng-model="vm.event.name" ng-minlength="1" required>
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Date
           <span style="color: red; position: absolute; right: 2%;" ng-show="eventForm.eventDate.$touched && eventForm.eventDate.$invalid">Required</span>
         </span>
-        <input name="eventDate" type="text" placeholder="Date" ng-model="vm.event.date" required>
+        <input name="eventDate" type="date" placeholder="yyyy-MM-dd" ng-model="vm.datePlaceholder" required>
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Postcode

@@ -13,10 +13,13 @@
     var vm = angular.extend(this, {
       title: 'Edit Event', // needed because the template is shared with the EventAddCtrl
       btnSaveText: 'Save Changes', // ^
+      datePlaceholder: new Date(...selectedEvent.date.split('/')),
       event: selectedEvent, // event passed in from the state machine
       activities: activities, // the activities for this event passed in from the state machine
       noActivities: false, // for UI
-      loading: false // spinner is not shown when view is first shown as the view would not be shown if the data it needed wasn't available thanks to the resolve property in the state machine
+      loading: false, // spinner is not shown when view is first shown as the view would not be shown if the data it needed wasn't available thanks to the resolve property in the state machine
+      dateRegex: /(\d\d\d\d-\d\d-\d\d)/,
+      postcodeRegex: /([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})/
     });
 
     function init() {
@@ -28,35 +31,44 @@
     init();
 
     vm.save = function save() {
-      vm.loading = true; // show spinner
-      
-      // PUT request to API with updated info about event
-      eventsSrvc.putEvent(vm.event).then(
-        function success(data) {
-          
-          eventsSrvc.updateEvent(data); // update local copy
-          vm.loading = false; // hide spinner
-          $ionicPopup.alert({ // show success popup
-            title: 'Success!',
-            template: 'Your changes have been saved!'
-          });
+      vm.event.date = vm.datePlaceholder.toISOString().match(vm.dateRegex)[0];
+      if (vm.event.postcode.match(vm.postcodeRegex) !== null) {
+        vm.loading = true; // show spinner
+        
+        // PUT request to API with updated info about event
+        eventsSrvc.putEvent(vm.event).then(
+          function success(data) {
+            
+            eventsSrvc.updateEvent(data); // update local copy
+            vm.loading = false; // hide spinner
+            $ionicPopup.alert({ // show success popup
+              title: 'Success!',
+              template: 'Your changes have been saved!'
+            });
+  
+            // disable the ability to go back to this view from the event list.
+            $ionicHistory.nextViewOptions({
+              disableBack: true
+            });
+            $state.go('event-list');
+          },
+  
+          function failure(error) {
+            // log error msg and show failure popup
+            console.error(error);
+            $ionicPopup.alert({
+              title: 'Error',
+              template: 'An error occurred when trying to save your changes. Please check your internet connection and try again.'
+            });
+          }
+        );
+      } else {
+        $ionicPopup.alert({
+          title: 'Error!',
+          template: 'Invalid postcode. Please enter a valid UK postcode'
+        });
+      }
 
-          // disable the ability to go back to this view from the event list.
-          $ionicHistory.nextViewOptions({
-            disableBack: true
-          });
-          $state.go('event-list');
-        },
-
-        function failure(error) {
-          // log error msg and show failure popup
-          console.error(error);
-          $ionicPopup.alert({
-            title: 'Error',
-            template: 'An error occurred when trying to save your changes. Please check your internet connection and try again.'
-          });
-        }
-      );
     };
 
     vm.gotoActivityList = function gotoActivityList() {
