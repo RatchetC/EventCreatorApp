@@ -27,23 +27,31 @@
       // show spinner
       vm.loading = true;
       // post the activity
-      activitiesSrvc.postActivity(vm.activity).then(
-        function success(postedActivity) {
-          activitiesSrvc.addActivity(postedActivity);
-          // hide spinner
-          vm.loading = false;
-          // go back to activity list
-          $ionicHistory.goBack();
-        },
-        function failure(error) {
-          // log error msg and show failure popup
-          console.error(error);
-          $ionicPopup.alert({
-            title: 'Error!',
-            template: 'Failed to save your activity to the database. Please check your internet connection and try again.'
-          });
-        }
-      );
+      if (vm.activity.minLegalValue < vm.activity.maxLegalValue) {
+        activitiesSrvc.postActivity(vm.activity).then(
+          function success(postedActivity) {
+            activitiesSrvc.addActivity(postedActivity);
+            // hide spinner
+            vm.loading = false;
+            // go back to activity list
+            $ionicHistory.goBack();
+          },
+          function failure(error) {
+            // log error msg and show failure popup
+            console.error(error);
+            $ionicPopup.alert({
+              title: 'Error!',
+              template: 'Failed to save your activity to the database. Please check your internet connection and try again.'
+            });
+          }
+        );
+      } else {
+        $ionicPopup.alert({
+          title: 'Error!',
+          template: 'The minimum legal value cannot be greater than the maximum legal value.'
+        });
+        vm.loading = false;
+      }
     };
 
   }
